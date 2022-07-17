@@ -1,0 +1,22 @@
+{
+  "name": "react-time-bar",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "repository": "https://github.com/LeeMir/react-time-bar.git",
+  "author": "LeeMir <manofgodmj@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.5",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.7.4"
+  }
+}

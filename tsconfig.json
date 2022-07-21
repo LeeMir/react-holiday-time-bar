@@ -6,7 +6,8 @@
     "jsx": "react",
     "rootDir": "./src",
     "incremental": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "es2022"]
   }
 }

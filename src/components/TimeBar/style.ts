@@ -1,21 +1,18 @@
 import styled from 'styled-components';
 
-import { TimeCellMode } from '.';
-
-interface TimeCellValue {
-  mode: TimeCellMode;
-}
+import { TimeCellValue } from '.';
 
 export const TimeBarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const TimeBarWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  padding-bottom: 1rem;
+  gap: 2px;
 `;
 
 export const TimeCellContainer = styled.div`
@@ -42,21 +39,40 @@ export const TimeCellContainer = styled.div`
 
 export const TimeCellContent = styled.div<TimeCellValue>`
   display: block;
-  width: 10px;
+  width: 13px;
   height: 30px;
-  border: 1px solid #777;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
   background-color: ${props => {
     switch (props.mode) {
       case 'lunch':
-        return '#C4DFAA';
+        return '#E7FBBE';
       case 'holi':
-        return '#F5F0BB';
+        return '#FDB0B3';
       case 'work':
-        return '#90C8AC';
+        return '#C0FCF8';
       case 'none':
         return '#fff';
       default:
         return '#fff';
     }
-  }}
+  }};
+  border: ${props => {
+    if (props.mode === 'lunch') return '1px solid #ababab';
+    switch (props.hoverMode) {
+      case 'holi':
+        return '2px solid #F15B6D';
+      case 'work':
+        return '2px solid #5ABAB6';
+      default:
+        return '1px solid #ababab';
+    }
+  }};
+`;
+
+export const TimeTextContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;

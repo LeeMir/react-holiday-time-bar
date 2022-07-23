@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { TimeCellMode } from '../types';
 import { idxToTime, isLunch } from '../utils';
 
 import { TimeCellContainer, TimeCellContent } from '../style';

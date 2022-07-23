@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import TimeCell from './TimeCell';
 
-import { TimeCellValue } from './types';
 import { idxToTime, isFast, isLunch, LENGTH, LUNCH_END_TIME, LUNCH_START_TIME } from './utils';
+
+import { TimeCellValue } from './types';
 
 import { TimeBarContainer, TimeBarWrapper, TimeTextContainer } from './style';
 
 const initArr = Array.from(Array(LENGTH * 4), () => ({ mode: 'none', hoverMode: 'none' } as TimeCellValue));
 const initHoverArr = (arr: TimeCellValue[]) => arr.map((cell) => ({ mode: cell.mode, hoverMode: 'none' } as TimeCellValue)); 
 
-const TimeBar = ({ duration }: { duration: number }) => {
+const HolidayTimeBar = ({ duration }: { duration: number }) => {
   const [timeCellList, setTimeCellList] = useState<TimeCellValue[]>(initArr);
   const [hoverIdx, setHoverIdx] = useState<number>(-1);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -103,4 +104,4 @@ const TimeBar = ({ duration }: { duration: number }) => {
   )
 };
 
-export default TimeBar;
+export default HolidayTimeBar;

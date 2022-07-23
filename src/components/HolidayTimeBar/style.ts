@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { TimeCellValue } from '.';
+import { TimeCellValue } from './types';
 
 export const TimeBarContainer = styled.div`
   display: flex;

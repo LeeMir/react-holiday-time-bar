@@ -1,5 +1,5 @@
-import React from 'react';
-import TimeBar from './components/TimeBar/index';
+import React, { useState } from 'react';
+import HolidayTimeBar from './components/HolidayTimeBar/index';
 import { GlobalStyles } from './GlobalStyles';
 
 import './style.scss';
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div id='App'>
       <GlobalStyles />
-      <TimeBar duration={4} />
+      <HolidayTimeBar duration={2} />
     </div>
   );
 };

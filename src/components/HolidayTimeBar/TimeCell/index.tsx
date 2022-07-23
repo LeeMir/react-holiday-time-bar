@@ -10,11 +10,28 @@ interface ITimeCell {
   idx: number;
   mode: TimeCellMode;
   hoverMode: TimeCellMode;
+  holiColor?: string;
+  holiHoverColor?: string;
+  workColor?: string;
+  workHoverColor?: string;
+  lunchColor?: string;
   setHoverIdx: React.Dispatch<React.SetStateAction<number>>;
   onClick: () => void;
 }
 
-const TimeCell = ({ idx, mode, hoverMode, setHoverIdx, onClick }: ITimeCell) => {
+const TimeCell = ({
+  idx,
+  mode,
+  hoverMode,
+  holiColor = '#FDB0B3',
+  holiHoverColor = '#F15B6D',
+  workColor = '#C0FCF8',
+  workHoverColor = '#5ABAB6',
+  lunchColor = '#E7FBBE',
+  setHoverIdx,
+  onClick
+}: ITimeCell) => {
+
   const time = idxToTime(idx);
   if (isLunch(time)) {
     mode = 'lunch';
@@ -30,6 +47,11 @@ const TimeCell = ({ idx, mode, hoverMode, setHoverIdx, onClick }: ITimeCell) => 
       <TimeCellContent
         mode={mode}
         hoverMode={hoverMode}
+        holiColor={holiColor}
+        holiHoverColor={holiHoverColor}
+        workColor={workColor}
+        workHoverColor={workHoverColor}
+        lunchColor={lunchColor}
         onClick={onClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

@@ -8,28 +8,58 @@ import { TimeCellValue } from './types';
 
 import { TimeBarContainer, TimeBarWrapper, TimeTextContainer } from './style';
 
+interface IHolidayTimeBar {
+  duration: 2 | 4 | 8;
+  holiColor?: string;
+  holiHoverColor?: string;
+  workColor?: string;
+  workHoverColor?: string;
+  lunchColor?: string;
+  viewText?: boolean;
+  times?: any;
+  setTimes?: React.Dispatch<React.SetStateAction<any>>;
+}
+
 const initArr = Array.from(Array(LENGTH * 4), () => ({ mode: 'none', hoverMode: 'none' } as TimeCellValue));
 const initHoverArr = (arr: TimeCellValue[]) => arr.map((cell) => ({ mode: cell.mode, hoverMode: 'none' } as TimeCellValue)); 
 
-const HolidayTimeBar = ({ duration }: { duration: number }) => {
+const HolidayTimeBar = ({
+  duration,
+  holiColor,
+  holiHoverColor,
+  workColor,
+  workHoverColor,
+  lunchColor,
+  times,
+  setTimes,
+  viewText = false
+}: IHolidayTimeBar) => {
+
   const [timeCellList, setTimeCellList] = useState<TimeCellValue[]>(initArr);
   const [hoverIdx, setHoverIdx] = useState<number>(-1);
   const [isHover, setIsHover] = useState<boolean>(false);
-  const reverseTimeCellList = [...timeCellList].reverse();
 
-  const startWorkIdx = timeCellList.findIndex((elem) => elem.mode === 'work');
-  const endWorkIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'work');
-  const startHoliIdx = timeCellList.findIndex((elem) => elem.mode === 'holi');
-  const endHoliIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'holi');
-
-  const startWorkTime = idxToTime(startWorkIdx);
-  const endWorkTime = idxToTime(endWorkIdx);
-  const startHoliTime = idxToTime(startHoliIdx);
-  const endHoliTime = idxToTime(endHoliIdx);
+  const { startWorkTime, endWorkTime, startHoliTime, endHoliTime } = times ?? {};
 
   const handleClickCell = () => {
     const arr = [...timeCellList].map((cell) => ({ mode: cell.hoverMode, hoverMode: cell.hoverMode })) as TimeCellValue[];
     setTimeCellList(arr);
+
+    if (times && setTimes) {
+      const reverseTimeCellList = [...arr].reverse();
+
+      const startWorkIdx = arr.findIndex((elem) => elem.mode === 'work');
+      const endWorkIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'work');
+      const startHoliIdx = arr.findIndex((elem) => elem.mode === 'holi');
+      const endHoliIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'holi');
+
+      const startWorkTime = idxToTime(startWorkIdx);
+      const endWorkTime = idxToTime(endWorkIdx);
+      const startHoliTime = idxToTime(startHoliIdx);
+      const endHoliTime = idxToTime(endHoliIdx);
+
+      setTimes({ startWorkTime, endWorkTime, startHoliTime, endHoliTime });
+    }
   };
 
   useEffect(() => {
@@ -89,17 +119,33 @@ const HolidayTimeBar = ({ duration }: { duration: number }) => {
     <TimeBarContainer>
       <TimeBarWrapper onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
         {timeCellList.map((cell: TimeCellValue, idx: number) => 
-          <TimeCell key={idx} idx={idx} mode={cell.mode} hoverMode={cell.hoverMode} setHoverIdx={setHoverIdx} onClick={handleClickCell} />
+          <TimeCell
+            key={idx}
+            idx={idx}
+            mode={cell.mode}
+            hoverMode={cell.hoverMode}
+            holiColor={holiColor}
+            holiHoverColor={holiHoverColor}
+            workColor={workColor}
+            workHoverColor={workHoverColor}
+            lunchColor={lunchColor}
+            setHoverIdx={setHoverIdx}
+            onClick={handleClickCell}
+          />
         )}
       </TimeBarWrapper>
-      <TimeTextContainer>
-        <span>출근 시간: {startWorkTime.hour}시 {startWorkTime.minute}분</span>
-        <span>휴가 시작 시간: {startHoliTime.hour}시 {startHoliTime.minute}분</span>
-      </TimeTextContainer>
-      <TimeTextContainer>
-        <span>퇴근 시간: {endWorkTime.hour}시 {endWorkTime.minute}분</span>
-        <span>휴가 종료 시간: {endHoliTime.hour}시 {endHoliTime.minute}분</span>
-      </TimeTextContainer>
+      { viewText &&
+        <>
+          <TimeTextContainer>
+            <span>출근 시간: {startWorkTime?.hour ?? ''}시 {startWorkTime?.minute ?? ''}분</span>
+            <span>휴가 시작 시간: {startHoliTime?.hour ?? ''}시 {startHoliTime?.minute ?? ''}분</span>
+          </TimeTextContainer>
+          <TimeTextContainer>
+            <span>퇴근 시간: {endWorkTime?.hour ?? ''}시 {endWorkTime?.minute ?? ''}분</span>
+            <span>휴가 종료 시간: {endHoliTime?.hour ?? ''}시 {endHoliTime?.minute ?? ''}분</span>
+          </TimeTextContainer>
+        </>
+      }
     </TimeBarContainer>
   )
 };

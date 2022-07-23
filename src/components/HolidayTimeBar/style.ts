@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { TimeCellValue } from './types';
 
 export const TimeBarContainer = styled.div`
@@ -37,7 +36,15 @@ export const TimeCellContainer = styled.div`
   }
 `;
 
-export const TimeCellContent = styled.div<TimeCellValue>`
+interface TimeCellContentValue extends TimeCellValue {
+  holiColor: string;
+  holiHoverColor: string;
+  workColor: string;
+  workHoverColor: string;
+  lunchColor: string;
+} 
+
+export const TimeCellContent = styled.div<TimeCellContentValue>`
   display: block;
   width: 13px;
   height: 30px;
@@ -47,11 +54,11 @@ export const TimeCellContent = styled.div<TimeCellValue>`
   background-color: ${props => {
     switch (props.mode) {
       case 'lunch':
-        return '#E7FBBE';
+        return props.lunchColor;
       case 'holi':
-        return '#FDB0B3';
+        return props.holiColor;
       case 'work':
-        return '#C0FCF8';
+        return props.workColor;
       case 'none':
         return '#fff';
       default:
@@ -62,9 +69,9 @@ export const TimeCellContent = styled.div<TimeCellValue>`
     if (props.mode === 'lunch') return '1px solid #ababab';
     switch (props.hoverMode) {
       case 'holi':
-        return '2px solid #F15B6D';
+        return `2px solid ${props.holiHoverColor}`;
       case 'work':
-        return '2px solid #5ABAB6';
+        return `2px solid ${props.workHoverColor}`;
       default:
         return '1px solid #ababab';
     }

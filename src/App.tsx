@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HolidayTimeBar from './components/HolidayTimeBar/index';
 import { GlobalStyles } from './GlobalStyles';
 

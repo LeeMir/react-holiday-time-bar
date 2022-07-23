@@ -1,7 +1,8 @@
 {
-  "name": "react-time-bar",
-  "version": "1.0.0",
-  "main": "src/index.tsx",
+  "name": "react-holiday-time-bar",
+  "version": "0.0.1",
+  "source": "src/index.js",
+  "main": "dist/main.js",
   "repository": "https://github.com/LeeMir/react-time-bar.git",
   "author": "LeeMir <manofgodmj@gmail.com>",
   "license": "MIT",
@@ -16,11 +17,14 @@
     "styled-reset": "^4.4.2"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.6.2",
+    "@parcel/transformer-typescript-tsc": "^2.6.2",
     "@types/node": "^18.0.5",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.25",
-    "parcel-bundler": "^1.12.5",
+    "parcel": "^2.6.2",
+    "process": "^0.11.10",
     "sass": "^1.53.0",
     "typescript": "^4.7.4"
   }

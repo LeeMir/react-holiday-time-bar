@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div id='App'>
       <GlobalStyles />
-      <HolidayTimeBar duration={2} />
+      <HolidayTimeBar duration={2} viewText={true} />
     </div>
   );
 };

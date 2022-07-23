@@ -77,7 +77,7 @@ const HolidayTimeBar = ({
         for (i = 0; i < duration * 4; i++) {
           const idx = start + i;
           if (isLunch(idxToTime(idx))) {
-            flag = LUNCH_TIME * duration;
+            flag = LUNCH_TIME * 4;
           }
           arr[idx + flag] = { mode: arr[idx + flag].mode, hoverMode: 'holi' };
         }

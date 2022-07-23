@@ -1,14 +1,14 @@
 {
   "name": "react-holiday-time-bar",
   "version": "0.0.1",
-  "source": "src/index.js",
+  "source": "src/index.tsx",
   "main": "dist/main.js",
   "repository": "https://github.com/LeeMir/react-time-bar.git",
   "author": "LeeMir <manofgodmj@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "build": "parcel ./src/index.html --no-sourcemaps"
+    "build": "parcel build"
   },
   "dependencies": {
     "react": "^18.2.0",

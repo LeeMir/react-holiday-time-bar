@@ -1,5 +1,5 @@
 import React from 'react';
-import HolidayTimeBar from './components/HolidayTimeBar/index';
+import HolidayTimeBar from './lib/HolidayTimeBar';
 import { GlobalStyles } from './GlobalStyles';
 
 import './style.scss';

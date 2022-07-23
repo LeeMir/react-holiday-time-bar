@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import TimeCell from './TimeCell';
 
-import { idxToTime, isFast, isLunch, LENGTH, LUNCH_END_TIME, LUNCH_START_TIME } from './utils';
+import { CORE_TIME, idxToTime, isFast, isLunch, LENGTH, LUNCH_END_TIME, LUNCH_START_TIME, LUNCH_TIME } from './utils';
 
 import { TimeCellValue } from './types';
 
@@ -36,8 +36,8 @@ const HolidayTimeBar = ({ duration }: { duration: number }) => {
     if (hoverIdx !== -1) {
       const arr = [...initHoverArr(timeCellList)];
       const time = idxToTime(hoverIdx);
-      const startAM = Math.min((LENGTH - 1 - 9) * 4, hoverIdx);
-      const startPM = Math.max((9 - duration) * 4,  Math.min((LENGTH - 1 - duration) * 4, hoverIdx));
+      const startAM = Math.min((LENGTH - 1 - CORE_TIME) * 4, hoverIdx);
+      const startPM = Math.max((CORE_TIME - duration) * 4,  Math.min((LENGTH - 1 - duration) * 4, hoverIdx));
       let i;
       
       if (isFast(time, LUNCH_START_TIME)) {
@@ -47,13 +47,13 @@ const HolidayTimeBar = ({ duration }: { duration: number }) => {
         for (i = 0; i < duration * 4; i++) {
           const idx = start + i;
           if (isLunch(idxToTime(idx))) {
-            flag = 6;
+            flag = LUNCH_TIME * duration;
           }
           arr[idx + flag] = { mode: arr[idx + flag].mode, hoverMode: 'holi' };
         }
 
         const startWork = start + i + flag;
-        const workLength = (flag > 0) ? (9 - duration) * 4 - flag : (9 - duration) * 4;
+        const workLength = (flag > 0) ? (CORE_TIME - duration) * 4 - flag : (CORE_TIME - duration) * 4;
         for (i = 0; i < workLength; i++) {
           const idx = startWork + i;
           arr[idx] = { mode: arr[idx].mode, hoverMode: 'work' };
@@ -68,7 +68,7 @@ const HolidayTimeBar = ({ duration }: { duration: number }) => {
         }
 
         const startWork = start - 1;
-        for (i = 0; i < (9 - duration) * 4; i++) {
+        for (i = 0; i < (CORE_TIME - duration) * 4; i++) {
           const idx = startWork - i;
           if (!isLunch(idxToTime(idx))) {
             arr[idx] = { mode: arr[idx].mode, hoverMode: 'work' };

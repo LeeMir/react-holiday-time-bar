@@ -2,6 +2,8 @@ import React from 'react';
 
 import { idxToTime, isLunch } from '../utils';
 
+import { TimeCellMode } from '../types';
+
 import { TimeCellContainer, TimeCellContent } from '../style';
 
 interface ITimeCell {

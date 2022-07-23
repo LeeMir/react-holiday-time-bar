@@ -1,67 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { TimeCellContainer, TimeCellContent, TimeBarContainer, TimeBarWrapper, TimeTextContainer } from './style';
 
-interface TimeValue {
-  hour: number;
-  minute: number;
-}
+import TimeCell from './TimeCell';
 
-export type TimeCellMode = 'none' | 'lunch' | 'holi' | 'work';
+import { TimeCellValue } from './types';
+import { idxToTime, isFast, isLunch, LENGTH, LUNCH_END_TIME, LUNCH_START_TIME } from './utils';
 
-interface ITimeCell {
-  idx: number;
-  mode: TimeCellMode;
-  hoverMode: TimeCellMode;
-  setHoverIdx: React.Dispatch<React.SetStateAction<number>>;
-  onClick: () => void;
-}
-
-export interface TimeCellValue {
-  mode: TimeCellMode;
-  hoverMode: TimeCellMode;
-}
-
-const START_TIME = 7;
-const END_TIME = 19;
-const LENGTH = END_TIME - START_TIME + 1;
-
-const LUNCH_START_TIME = { hour: 11, minute: 30 } as TimeValue;
-const LUNCH_END_TIME = { hour: 13, minute: 0 } as TimeValue;
+import { TimeBarContainer, TimeBarWrapper, TimeTextContainer } from './style';
 
 const initArr = Array.from(Array(LENGTH * 4), () => ({ mode: 'none', hoverMode: 'none' } as TimeCellValue));
 const initHoverArr = (arr: TimeCellValue[]) => arr.map((cell) => ({ mode: cell.mode, hoverMode: 'none' } as TimeCellValue)); 
-
-const idxToTime = (idx: number) => idx === -1 || idx > 48 ? ({hour: -1, minute: -1}) : ({ hour: Math.floor(idx / 4) + START_TIME, minute: (idx % 4) * 15 } as TimeValue);
-const timeToIdx = (time: TimeValue) => (time.hour - START_TIME) * 4 + Math.round(time.minute / 15);
-
-const isFast = (a: TimeValue, b: TimeValue, flag = false) => (a.hour * 60 + a.minute < b.hour * 60 + b.minute) || (flag && isSame(a, b));
-const isSame = (a: TimeValue, b: TimeValue) => a.hour * 60 + a.minute === b.hour * 60 + b.minute;
-const isLunch = (time: TimeValue) => isFast(LUNCH_START_TIME, time, true) && isFast(time, LUNCH_END_TIME) && !isSame(time, LUNCH_END_TIME);
-
-const TimeCell = ({ idx, mode, hoverMode, setHoverIdx, onClick }: ITimeCell) => {
-  const time = idxToTime(idx);
-  if (isLunch(time)) {
-    mode = 'lunch';
-  }
-  const handleMouseEnter = () => {
-    setHoverIdx(idx);
-  };
-  const handleMouseLeave = () => {
-    setHoverIdx(-1);
-  };
-  return (
-    <TimeCellContainer>
-      <TimeCellContent
-        mode={mode}
-        hoverMode={hoverMode}
-        onClick={onClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      />
-      {time.minute === 0 && <span>{time.hour}</span>}
-    </TimeCellContainer>
-  )
-};
 
 const TimeBar = ({ duration }: { duration: number }) => {
   const [timeCellList, setTimeCellList] = useState<TimeCellValue[]>(initArr);

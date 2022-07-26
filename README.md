@@ -17,6 +17,10 @@ React로 만든 휴가 시간 선택 바 컴포넌트 🏖️
   <a href="#" target="_blank"><img src="https://img.shields.io/github/stars/leemir/react-holiday-time-bar?style=social"/></a>
 </div>
 
+<div align='center'>
+  <a href="#" target="_blank"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLeeMir%2Freact-holiday-time-bar&count_bg=%235ABAB6&title_bg=%23F15B6D&icon=googlekeep.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+</div>
+
 ## Usage
 
 - 커서 위치는 항상 휴가 시작 시간

@@ -10,6 +10,7 @@ interface ITimeCell {
   idx: number;
   mode: TimeCellMode;
   hoverMode: TimeCellMode;
+  className?: string;
   holiColor?: string;
   holiHoverColor?: string;
   workColor?: string;
@@ -23,6 +24,7 @@ const TimeCell = ({
   idx,
   mode,
   hoverMode,
+  className,
   holiColor = '#FDB0B3',
   holiHoverColor = '#F15B6D',
   workColor = '#C0FCF8',
@@ -47,6 +49,7 @@ const TimeCell = ({
       <TimeCellContent
         mode={mode}
         hoverMode={hoverMode}
+        className={className}
         holiColor={holiColor}
         holiHoverColor={holiHoverColor}
         workColor={workColor}

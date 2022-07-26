@@ -16,6 +16,8 @@ interface IHolidayTimeBar {
   workHoverColor?: string;
   lunchColor?: string;
   viewText?: boolean;
+  className?: string;
+  cellClassName?: string;
   times?: any;
   setTimes?: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -30,34 +32,38 @@ const HolidayTimeBar = ({
   workColor,
   workHoverColor,
   lunchColor,
+  className,
+  cellClassName,
   times,
   setTimes,
   viewText = false
 }: IHolidayTimeBar) => {
-
+  const [dummyTimes, setDummyTimes] = useState({});
   const [timeCellList, setTimeCellList] = useState<TimeCellValue[]>(initArr);
   const [hoverIdx, setHoverIdx] = useState<number>(-1);
   const [isHover, setIsHover] = useState<boolean>(false);
 
-  const { startWorkTime, endWorkTime, startHoliTime, endHoliTime } = times ?? {};
+  const { startWorkTime, endWorkTime, startHoliTime, endHoliTime } = times ?? dummyTimes;
 
   const handleClickCell = () => {
     const arr = [...timeCellList].map((cell) => ({ mode: cell.hoverMode, hoverMode: cell.hoverMode })) as TimeCellValue[];
     setTimeCellList(arr);
 
+    const reverseTimeCellList = [...arr].reverse();
+
+    const startWorkIdx = arr.findIndex((elem) => elem.mode === 'work');
+    const endWorkIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'work');
+    const startHoliIdx = arr.findIndex((elem) => elem.mode === 'holi');
+    const endHoliIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'holi');
+
+    const startWorkTime = idxToTime(startWorkIdx);
+    const endWorkTime = idxToTime(endWorkIdx);
+    const startHoliTime = idxToTime(startHoliIdx);
+    const endHoliTime = idxToTime(endHoliIdx);
+
+    setDummyTimes({ startWorkTime, endWorkTime, startHoliTime, endHoliTime });
+
     if (times && setTimes) {
-      const reverseTimeCellList = [...arr].reverse();
-
-      const startWorkIdx = arr.findIndex((elem) => elem.mode === 'work');
-      const endWorkIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'work');
-      const startHoliIdx = arr.findIndex((elem) => elem.mode === 'holi');
-      const endHoliIdx = 52 - reverseTimeCellList.findIndex((elem) => elem.mode === 'holi');
-
-      const startWorkTime = idxToTime(startWorkIdx);
-      const endWorkTime = idxToTime(endWorkIdx);
-      const startHoliTime = idxToTime(startHoliIdx);
-      const endHoliTime = idxToTime(endHoliIdx);
-
       setTimes({ startWorkTime, endWorkTime, startHoliTime, endHoliTime });
     }
   };
@@ -116,7 +122,7 @@ const HolidayTimeBar = ({
   }, [isHover]);
 
   return (
-    <TimeBarContainer>
+    <TimeBarContainer className={className}>
       <TimeBarWrapper onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
         {timeCellList.map((cell: TimeCellValue, idx: number) => 
           <TimeCell
@@ -124,6 +130,7 @@ const HolidayTimeBar = ({
             idx={idx}
             mode={cell.mode}
             hoverMode={cell.hoverMode}
+            className={cellClassName}
             holiColor={holiColor}
             holiHoverColor={holiHoverColor}
             workColor={workColor}

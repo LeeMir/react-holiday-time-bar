@@ -1,7 +1,7 @@
 {
   "name": "react-holiday-time-bar",
-  "version": "0.0.11",
-  "description": "simple react holiday time bar",
+  "version": "0.0.12",
+  "description": "simple holiday time bar with react",
   "source": "src/lib/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

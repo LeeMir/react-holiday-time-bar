@@ -1,11 +1,14 @@
 {
   "name": "react-holiday-time-bar",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "simple holiday time bar with react",
   "source": "src/lib/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/LeeMir/react-time-bar.git",
+  "repository": "https://github.com/LeeMir/react-holiday-time-bar",
+  "publishConfig": {
+    "registry":"https://www.npmjs.com/package/react-holiday-time-bar"
+  },
   "author": "LeeMir <manofgodmj@gmail.com>",
   "license": "MIT",
   "scripts": {

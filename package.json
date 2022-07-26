@@ -1,6 +1,6 @@
 {
   "name": "react-holiday-time-bar",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "simple react holiday time bar",
   "source": "src/lib/index.ts",
   "main": "dist/index.js",
@@ -10,8 +10,6 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "watch": "parcel watch",
-    "build": "parcel build ./src/lib/index.ts",
     "publish:npm": "rm -rf dist && mkdir dist && tsc"
   },
   "dependencies": {

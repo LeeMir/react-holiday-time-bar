@@ -17,8 +17,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.5",
-    "styled-reset": "^4.4.2"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.9",
@@ -33,6 +32,7 @@
     "parcel": "^2.6.2",
     "process": "^0.11.10",
     "sass": "^1.53.0",
+    "styled-reset": "^4.4.2",
     "typescript": "^4.7.4"
   }
 }

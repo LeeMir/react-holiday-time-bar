@@ -5,9 +5,12 @@
   "source": "src/lib/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/LeeMir/react-holiday-time-bar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeeMir/react-holiday-time-bar"
+  },
   "publishConfig": {
-    "registry":"https://www.npmjs.com/package/react-holiday-time-bar"
+    "registry":"https://npm.pkg.github.com"
   },
   "author": "LeeMir <manofgodmj@gmail.com>",
   "license": "MIT",

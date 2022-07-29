@@ -1,15 +1,12 @@
 {
   "name": "react-holiday-time-bar",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "simple holiday time bar with react",
   "keywords" : ["react", "typescript", "parcel", "component", "time", "hover"],
   "source": "src/lib/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:LeeMir/react-holiday-time-bar.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "author": "LeeMir <manofgodmj@gmail.com>",
   "license": "MIT",
   "scripts": {

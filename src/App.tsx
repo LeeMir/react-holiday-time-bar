@@ -1,12 +1,14 @@
-import * as React from 'react';
-import TimeBar from './components/TimeBar';
+import React from 'react';
+import HolidayTimeBar from './lib/HolidayTimeBar';
+import { GlobalStyles } from './GlobalStyles';
 
 import './style.scss';
 
 const App = () => {
   return (
     <div id='App'>
-      <TimeBar duration={8} />
+      <GlobalStyles />
+      <HolidayTimeBar duration={2} viewText={true} />
     </div>
   );
 };

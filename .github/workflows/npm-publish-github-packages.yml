@@ -19,8 +19,9 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/react-holiday-time-bar
-      - run: npm install
-      - run: npm run publish:npm
+      - run: npm config set registry https://registry.npmjs.org
+      - run: yarn
+      - run: yarn publish:npm
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

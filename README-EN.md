@@ -21,9 +21,11 @@
 
 ## Introduction
 
-안녕하세요! 휴가(반차, 반반차) 시간 선택 바 리액트 컴포넌트입니다. 📅 ⏰
+Hello! This is react holiday time bar component. 📅 ⏰
 
-[View In English](https://github.com/LeeMir/react-holiday-time-bar/blob/main/README-EN.md)
+In Korea, we can take annual leave / half-day leave / half-half day leave.
+
+It can help to select your leave and work time.
 
 ## Get Started
 
@@ -39,7 +41,7 @@ yarn add react-holiday-time-bar
 
 ## Type
 
-여기서는 다음과 같은 형식을 사용합니다.
+This component use next type.
 
 ```typescript
 interface TimeValue {
@@ -57,10 +59,10 @@ interface TimeCellValue {
 
 ## Usage
 
-- **커서 위치**는 항상 휴가 시작 시간을 가리킵니다.
-- 마우스를 올려놨을 때 테두리 변화로 휴가 시간과 근무 시간을 미리볼 수 있습니다.
-- 클릭하면 배경이 칠해지며, 출퇴근 시간 및 휴가 시작/종료 시간이 담긴 상태를 반환합니다.
-- `duration`: 2(반반차) | 4(반차) | 8
+- **Cursor**'s position is always **Leave(Off) Start Time**.
+- You can preview the results through the hover effect.
+- If you click the cell, you can see the cell's background painted.
+- `duration`: 2(half-half day) | 4(half-day) | 8(a day)
 
 ```React
 import React from 'react';
@@ -79,17 +81,18 @@ export default App;
 
 ## Constant
 
-- 일하는 시간: 9시간 (점심 시간 포함)
-- 점심 시간: 11:30 ~ 13:00
-- 최소 시간: 07:00
-- 최대 시간: 19:00
+- Have to work: 9 hours (include lunch)
+- Lunch time: 11:30 ~ 13:00
+- Time to min: 07:00
+- Time to max: 19:00
 
 ## Customize
 
 ### useState
 
-- `times`, `setTimes`를 props로 넘겨주면 마우스 클릭 시마다 `times`에 아래 형태의 데이터가 저장됩니다.
-  - `{ startWorkTime, endWorkTime, startHoliTime, endHoliTime }`
+- `times`, `setTimes` properties are operated when onClick.
+  - `times = { startWorkTime, endWorkTime, startHoliTime, endHoliTime }`
+  - *It must be useState*
 
 ```React
 import React, { useState } from 'react';
@@ -115,8 +118,8 @@ export default App;
 
 ### viewText
 
-- `viewText={true}`는 내가 선택한 시간을 보여줍니다.
-- 상태를 넘겨주지 않으면 자체 내장된 상태로 진행합니다.
+- `viewText={true}` shows time you chose.
+  - Refer to the below image.
 
 ```React
 import React from 'react';
@@ -139,8 +142,6 @@ export default App;
 ![image](https://i.imgur.com/ic6hMHg.png)
 
 ### Color
-
-- props로 색깔을 지정할 수 있습니다.
 
 ```React
 import React from 'react';
@@ -167,8 +168,8 @@ export default App;
 
 ### className
 
-- 그 밖에 커스텀 css를 입히고 싶다면, `className`을 부여할 수 있습니다.
-  - `cellClassName`: 셀 한 개에 들어갈 `className`입니다.
+- If you want to customize css, use `className`.
+  - `cellClassName`: cell's `className`
 
 ```React
 import React from 'react';
